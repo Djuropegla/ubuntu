@@ -9,185 +9,47 @@ declare -a g3s2=("Baze" "LINS" "MPP" "OI2" "POIS" "PJ");
 declare -a g4s1=("PIS" "ITEH" "SISJ" "PS" "Inteligentni");
 declare -a g4s2=("OK" "Mobilno_racunarstvo" "ZRS" "NJT" "Diplomski");
 
+moja_funkcija(){
+
+		mkdir $1.godina;
+		cd $1.godina;
+		mkdir S1 S2;
+		cd S1;
+		length=${#g$1s1[@]};
+		for (( i=0; i<${length}; i++ )); 
+		do
+			echo ${g$1s1[$i]};
+			mkdir ${g$1s1[$i]};
+		done
+		
+		cd ..;
+		cd S2;
+		
+		length=${#g$1s2[@]};
+		for (( i=0; i<${length}; i++ )); 
+		do
+			echo ${g$1s2[$i]};
+			mkdir ${g$1s2[$i]};
+		done
+}
+
 case $1 in
 	"1") 
-		mkdir 1.godina;
-		cd 1.godina;
-		mkdir S1 S2;
-		cd S1;
-		length=${#g1s1[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g1s1[$i]};
-			mkdir ${g1s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g1s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g1s2[$i]};
-			mkdir ${g1s2[$i]};
-		done
+	moja_funkcija 1
 	;;
 	"2") 
-		mkdir 2.godina;
-		cd 2.godina;
-		mkdir S1 S2;
-		cd S1;
-		length=${#g2s1[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g2s1[$i]};
-			mkdir ${g2s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g2s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g2s2[$i]};
-			mkdir ${g2s2[$i]};
-		done
+	moja_funkcija 2
 	;;
 	"3") 
-		mkdir 3.godina;
-		cd 3.godina;
-		mkdir S1 S2;
-		cd S1;
-		
-		length=${#g3s1[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g3s1[$i]};
-			mkdir ${g3s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g3s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g3s2[$i]};
-			mkdir ${g3s2[$i]};
-		done
+	moja_funkcija 3
 	;;
 	"4") 
-		mkdir 4.godina;
-		cd 4.godina;
-		mkdir S1 S2;
-		cd S1;
-		
-		length=${#g4s1[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g4s1[$i]};
-			mkdir ${g4s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g4s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g4s2[$i]};
-			mkdir ${g4s2[$i]};
-		done
+	moja_funkcija 4
 	;;
-		"--all") 
-		mkdir 1.godina;
-		cd 1.godina;
-		mkdir S1 S2;
-		cd S1;
-		length=${#g1s1[@]};
-		for (( i=0; i<${length}; i++ )); 
+	"--all") 
+		for (( i=1; i<=4; i++ )); 
 		do
-			echo ${g1s1[$i]};
-			mkdir ${g1s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g1s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g1s2[$i]};
-			mkdir ${g1s2[$i]};
-		done
-		cd ..
-		cd ..
-				mkdir 2.godina;
-		cd 2.godina;
-		mkdir S1 S2;
-		cd S1;
-		length=${#g2s1[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g2s1[$i]};
-			mkdir ${g2s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g2s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g2s2[$i]};
-			mkdir ${g2s2[$i]};
-		done
-		cd ..
-		cd ..
-				mkdir 3.godina;
-		cd 3.godina;
-		mkdir S1 S2;
-		cd S1;
-		
-		length=${#g3s1[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g3s1[$i]};
-			mkdir ${g3s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g3s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g3s2[$i]};
-			mkdir ${g3s2[$i]};
-		done
-		cd ..
-		cd ..
-				mkdir 4.godina;
-		cd 4.godina;
-		mkdir S1 S2;
-		cd S1;
-		
-		length=${#g4s1[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g4s1[$i]};
-			mkdir ${g4s1[$i]};
-		done
-		
-		cd ..;
-		cd S2;
-		
-		length=${#g4s2[@]};
-		for (( i=0; i<${length}; i++ )); 
-		do
-			echo ${g4s2[$i]};
-			mkdir ${g4s2[$i]};
+			moja_funkcija $i
 		done
 	;;
 esac
