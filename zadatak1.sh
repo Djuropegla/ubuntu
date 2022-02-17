@@ -10,27 +10,47 @@ declare -a g4s1=("PIS" "ITEH" "SISJ" "PS" "Inteligentni");
 declare -a g4s2=("OK" "Mobilno_racunarstvo" "ZRS" "NJT" "Diplomski");
 
 moja_funkcija(){
-
-		mkdir $1.godina;
-		cd $1.godina;
+		godina=$1
+		mkdir $godina.godina;
+		cd $godina.godina;
 		mkdir S1 S2;
 		cd S1;
-		length=${#g$1s1[@]};
+		case $godina in 
+		1)
+		niz1=("${g1s1[@]}");
+		niz2=("${g1s2[@]}");
+		;;
+		2)
+		niz1=("${g2s1[@]}");
+		niz2=("${g2s2[@]}");
+		;;
+		3)
+		niz1=("${g3s1[@]}");
+		niz2=("${g2s2[@]}");
+		;;
+		4)
+		niz1=("${g4s1[@]}");
+		niz2=("${g2s2[@]}");
+		esac
+		length=${#niz1[@]};
 		for (( i=0; i<${length}; i++ )); 
 		do
-			echo ${g$1s1[$i]};
-			mkdir ${g$1s1[$i]};
+			echo ${niz1[$i]};
+			mkdir ${niz1[$i]};
 		done
 		
 		cd ..;
 		cd S2;
 		
-		length=${#g$1s2[@]};
+		length=${#niz2[@]};
 		for (( i=0; i<${length}; i++ )); 
 		do
-			echo ${g$1s2[$i]};
-			mkdir ${g$1s2[$i]};
+			echo ${niz2[$i]};
+			mkdir ${niz2[$i]};
 		done
+		cd ..
+		cd ..
+		printf "\n"
 }
 
 case $1 in
@@ -47,9 +67,9 @@ case $1 in
 	moja_funkcija 4
 	;;
 	"--all") 
-		for (( i=1; i<=4; i++ )); 
-		do
-			moja_funkcija $i
-		done
+		moja_funkcija 1
+		moja_funkcija 2
+		moja_funkcija 3
+		moja_funkcija 4
 	;;
 esac
